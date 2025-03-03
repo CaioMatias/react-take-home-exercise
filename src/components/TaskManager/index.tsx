@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { Task } from "../types";
+import { Task } from "@/types";
 
-import TaskItem from "./TaskItem";
+import Filters from "@/components/TaskManager/Filters";
+import List from "@/components/TaskManager/List";
 
 const TaskManager = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -58,33 +59,13 @@ const TaskManager = () => {
         </button>
       </form>
 
-      {/* filters */}
-      <div className="flex justify-around mb-4">
-        <button className="text-gray-700" onClick={() => setFilter("all")}>
-          All
-        </button>
-        <button
-          onClick={() => setFilter("completed")}
-          className="text-gray-700"
-        >
-          Completed
-        </button>
-        <button className="text-gray-700" onClick={() => setFilter("pending")}>
-          Pending
-        </button>
-      </div>
+      <Filters setFilter={setFilter} />
 
-      {/* list */}
-      <ul>
-        {filteredTasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onDelete={handleDeleteTask}
-            onToggle={toggleTaskCompletion}
-          />
-        ))}
-      </ul>
+      <List
+        tasks={filteredTasks}
+        onDelete={handleDeleteTask}
+        onToggle={toggleTaskCompletion}
+      />
     </div>
   );
 };
