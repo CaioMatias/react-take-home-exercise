@@ -5,7 +5,7 @@ import { Task } from "../types";
 import TaskItem from "./TaskItem";
 
 const TaskManager = () => {
-  const [tasks, setTasks] = useState<any[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState("all");
 
   const filteredTasks = tasks.filter((task) => {

@@ -1,7 +1,14 @@
 import React from "react";
-import { TaskItem } from "../types";
 
-const TaskItem = ({ task, onDelete, onToggle }: TaskItem) => {
+import { Task } from "../types";
+
+export type Props = {
+  task: Task;
+  onDelete: (id: number) => void;
+  onToggle: (id: number) => void;
+};
+
+const TaskItem = ({ task, onDelete, onToggle }: Props) => {
   return (
     <li className="flex items-center justify-between border-b py-2">
       <span
