@@ -20,7 +20,7 @@ const TaskManager = () => {
 
     const newTask: Task = {
       id: Date.now(),
-      name: e.target[0].value,
+      title: e.target[0].value,
       completed: false,
     };
 
@@ -47,20 +47,20 @@ const TaskManager = () => {
 
   return (
     <div className="container mx-auto bg-white p-4 rounded shadow">
-      <form onSubmit={handleAddTask} className="mb-4 flex">
+      <form className="mb-4 flex" onSubmit={handleAddTask}>
         <input
+          className="flex-grow border rounded-l py-2 px-3"
           type="text"
           placeholder="New task..."
-          className="flex-grow border rounded-l py-2 px-3"
         />
-        <button type="submit" className="bg-blue-500 text-white px-4 rounded-r">
+        <button className="bg-blue-500 text-white px-4 rounded-r" type="submit">
           Add
         </button>
       </form>
 
       {/* filters */}
       <div className="flex justify-around mb-4">
-        <button onClick={() => setFilter("all")} className="text-gray-700">
+        <button className="text-gray-700" onClick={() => setFilter("all")}>
           All
         </button>
         <button
@@ -69,7 +69,7 @@ const TaskManager = () => {
         >
           Completed
         </button>
-        <button onClick={() => setFilter("pending")} className="text-gray-700">
+        <button className="text-gray-700" onClick={() => setFilter("pending")}>
           Pending
         </button>
       </div>

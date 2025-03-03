@@ -12,17 +12,17 @@ const TaskItem = ({ task, onDelete, onToggle }: Props) => {
   return (
     <li className="flex items-center justify-between border-b py-2">
       <span
-        onClick={() => onToggle(task.id)}
         className={`cursor-pointer ${
           task.completed ? "line-through text-green-500" : "text-black"
         }`}
+        onClick={() => onToggle(task.id)}
       >
-        {task.name}
+        {task.title}
       </span>
 
       <button
-        onClick={() => onDelete(task.id)}
         className="bg-red-500 text-white px-4 rounded"
+        onClick={() => onDelete(task.id)}
       >
         Delete
       </button>
