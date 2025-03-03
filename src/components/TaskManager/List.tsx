@@ -1,26 +1,24 @@
 import React from "react";
 
-import { Task } from "@/types";
-
 import Item from "@/components/TaskManager/Item";
 
-type Props = {
-  tasks: Task[];
-  onDelete: (id: number) => void;
-  onToggle: (id: number) => void;
-};
+import { useTaskManagerStore } from "@/store";
 
-const List = ({ tasks, onDelete, onToggle }: Props) => {
+const List = () => {
+  const { tasks, activeFilter } = useTaskManagerStore((state) => state);
+
   return (
     <ul>
-      {tasks.map((task) => (
-        <Item
-          key={task.id}
-          task={task}
-          onDelete={onDelete}
-          onToggle={onToggle}
-        />
-      ))}
+      {tasks
+        .filter((task) => {
+          if (activeFilter === "all") return true;
+          if (activeFilter === "completed") return task.completed;
+          if (activeFilter === "pending") return !task.completed;
+          return false;
+        })
+        .map((task) => (
+          <Item key={task.id} task={task} />
+        ))}
     </ul>
   );
 };
