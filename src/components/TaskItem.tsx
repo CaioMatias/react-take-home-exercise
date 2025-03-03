@@ -1,25 +1,21 @@
 import React from "react";
+import { TaskItem } from "../types";
 
-const TaskItem = ({ task, onDelete, onToggle }: any) => {
+const TaskItem = ({ task, onDelete, onToggle }: TaskItem) => {
   return (
     <li className="flex items-center justify-between border-b py-2">
       <span
         onClick={() => onToggle(task.id)}
         className={`cursor-pointer ${
-          task.isCompleted ? "text-black" : "line-through text-green-500"
+          task.completed ? "line-through text-green-500" : "text-black"
         }`}
       >
-        {task.title}
+        {task.name}
       </span>
 
       <button
         onClick={() => onDelete(task.id)}
-        style={{
-          backgroundColor: "red",
-          color: "white",
-          padding: "4px 8px",
-          borderRadius: "4px",
-        }}
+        className="bg-red-500 text-white px-4 rounded"
       >
         Delete
       </button>
