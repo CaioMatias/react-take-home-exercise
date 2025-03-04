@@ -1,13 +1,17 @@
 import React from "react";
+import { createPortal } from "react-dom";
 
 import { useTaskManagerStore } from "@/store";
 import { Task } from "@/types";
+import Modal from "./Modal";
 
 export type Props = {
   task: Task;
 };
 
 const Item = ({ task }: Props) => {
+  const [showModal, setShowModal] = React.useState(false);
+
   const { deleteTask, toggleTaskCompleted } = useTaskManagerStore(
     (state) => state
   );
@@ -17,6 +21,11 @@ const Item = ({ task }: Props) => {
   };
 
   const handleDeleteClick = () => {
+    setShowModal(true);
+  };
+
+  const handleDeleteConsent = () => {
+    setShowModal(false);
     deleteTask(task.id);
   };
 
@@ -37,6 +46,15 @@ const Item = ({ task }: Props) => {
       >
         Delete
       </button>
+
+      {createPortal(
+        <Modal
+          isOpen={showModal}
+          onDelete={handleDeleteConsent}
+          onCancel={() => setShowModal(false)}
+        />,
+        document.body
+      )}
     </li>
   );
 };
