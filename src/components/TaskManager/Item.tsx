@@ -1,28 +1,39 @@
 import React from "react";
 
-import { Task } from "../types";
+import { useTaskManagerStore } from "@/store";
+import { Task } from "@/types";
 
 export type Props = {
   task: Task;
-  onDelete: (id: number) => void;
-  onToggle: (id: number) => void;
 };
 
-const TaskItem = ({ task, onDelete, onToggle }: Props) => {
+const Item = ({ task }: Props) => {
+  const { deleteTask, toggleTaskCompleted } = useTaskManagerStore(
+    (state) => state
+  );
+
+  const handleTitleClick = () => {
+    toggleTaskCompleted(task.id);
+  };
+
+  const handleDeleteClick = () => {
+    deleteTask(task.id);
+  };
+
   return (
     <li className="flex items-center justify-between border-b py-2">
       <span
         className={`cursor-pointer ${
           task.completed ? "line-through text-green-500" : "text-black"
         }`}
-        onClick={() => onToggle(task.id)}
+        onClick={handleTitleClick}
       >
         {task.title}
       </span>
 
       <button
         className="bg-red-500 text-white px-4 rounded"
-        onClick={() => onDelete(task.id)}
+        onClick={handleDeleteClick}
       >
         Delete
       </button>
@@ -30,4 +41,4 @@ const TaskItem = ({ task, onDelete, onToggle }: Props) => {
   );
 };
 
-export default TaskItem;
+export default Item;
