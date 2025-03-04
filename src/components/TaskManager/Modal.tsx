@@ -1,7 +1,5 @@
 import React from "react";
-
-import { AnimatePresence } from "motion/react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 type Props = {
   isOpen: boolean;

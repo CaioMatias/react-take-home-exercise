@@ -1,11 +1,12 @@
 import React from "react";
 import { createPortal } from "react-dom";
 
+import Modal from "@/components/TaskManager/Modal";
+
 import { useTaskManagerStore } from "@/store";
 import { Task } from "@/types";
-import Modal from "./Modal";
 
-export type Props = {
+type Props = {
   task: Task;
 };
 

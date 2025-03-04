@@ -1,5 +1,4 @@
 import React from "react";
-
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 
 import Item from "@/components/TaskManager/Item";
