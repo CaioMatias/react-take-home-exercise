@@ -26,7 +26,9 @@ const Item = ({ task }: Props) => {
 
   const handleDeleteConsent = () => {
     setShowModal(false);
-    deleteTask(task.id);
+    setTimeout(() => {
+      deleteTask(task.id);
+    }, 300);
   };
 
   return (
