@@ -30,7 +30,7 @@ const Item = ({ task }: Props) => {
   };
 
   return (
-    <li className="flex items-center justify-between border-b py-2">
+    <li className="flex items-center justify-between border-b py-4">
       <span
         className={`cursor-pointer ${
           task.completed ? "line-through text-green-500" : "text-black"
@@ -41,7 +41,7 @@ const Item = ({ task }: Props) => {
       </span>
 
       <button
-        className="bg-red-500 text-white px-4 rounded"
+        className="bg-red-500 text-white px-4 py-1 rounded"
         onClick={handleDeleteClick}
       >
         Delete

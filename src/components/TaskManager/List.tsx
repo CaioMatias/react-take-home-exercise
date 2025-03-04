@@ -22,10 +22,6 @@ const List = () => {
           .map((task) => (
             <motion.div
               key={task.id}
-              // exit={{
-              //   // x: 50,
-              //   opacity: 0,
-              // }}
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >
