@@ -5,7 +5,7 @@ import { Task } from "@/types";
 
 export type TaskManagerStore = {
   tasks?: Task[];
-  addTask?: (newTask: Task) => void;
+  addTask?: (title: string) => void;
   deleteTask?: (id: number) => void;
   toggleTaskCompleted?: (id: number) => void;
   activeFilter?: "all" | "completed" | "pending";
@@ -16,9 +16,16 @@ export const useTaskManagerStore = create<TaskManagerStore>()(
   persist(
     (set, get) => ({
       tasks: [],
-      addTask: (newTask) =>
+      addTask: (title) =>
         set((state) => ({
-          tasks: [...state.tasks, newTask],
+          tasks: [
+            ...state.tasks,
+            {
+              title,
+              id: Date.now(),
+              completed: false,
+            },
+          ],
         })),
       deleteTask: (id) =>
         set((state) => ({

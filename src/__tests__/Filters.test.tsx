@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { mockUseTaskManagerStore } from "../../jest.setup";
 
 import Filters from "@/components/TaskManager/Filters";
+
 import { TaskManagerStore } from "@/store";
 
 describe("Filters", () => {
@@ -16,7 +17,6 @@ describe("Filters", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    // here, we implement our function for mocking store state
     mockUseTaskManagerStore(defaultStoreState);
   });
 
