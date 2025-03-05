@@ -3,13 +3,13 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 import { Task } from "@/types";
 
-type TaskManagerStore = {
-  tasks: Task[];
-  addTask: (newTask: Task) => void;
-  deleteTask: (id: number) => void;
-  toggleTaskCompleted: (id: number) => void;
-  activeFilter: "all" | "completed" | "pending";
-  setFilter: (filter: "all" | "completed" | "pending") => void;
+export type TaskManagerStore = {
+  tasks?: Task[];
+  addTask?: (newTask: Task) => void;
+  deleteTask?: (id: number) => void;
+  toggleTaskCompleted?: (id: number) => void;
+  activeFilter?: "all" | "completed" | "pending";
+  setFilter?: (filter: "all" | "completed" | "pending") => void;
 };
 
 export const useTaskManagerStore = create<TaskManagerStore>()(
