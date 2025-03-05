@@ -26,6 +26,7 @@ const Modal = ({ isOpen, onDelete, onCancel }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            data-testid="modal"
           >
             <p className="mb-6 text-pretty text-center">
               Are you sure you want to delete this task?

@@ -3,22 +3,29 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 import { Task } from "@/types";
 
-type TaskManagerStore = {
-  tasks: Task[];
-  addTask: (newTask: Task) => void;
-  deleteTask: (id: number) => void;
-  toggleTaskCompleted: (id: number) => void;
-  activeFilter: "all" | "completed" | "pending";
-  setFilter: (filter: "all" | "completed" | "pending") => void;
+export type TaskManagerStore = {
+  tasks?: Task[];
+  addTask?: (title: string) => void;
+  deleteTask?: (id: number) => void;
+  toggleTaskCompleted?: (id: number) => void;
+  activeFilter?: "all" | "completed" | "pending";
+  setFilter?: (filter: "all" | "completed" | "pending") => void;
 };
 
 export const useTaskManagerStore = create<TaskManagerStore>()(
   persist(
     (set, get) => ({
       tasks: [],
-      addTask: (newTask) =>
+      addTask: (title) =>
         set((state) => ({
-          tasks: [...state.tasks, newTask],
+          tasks: [
+            ...state.tasks,
+            {
+              title,
+              id: Date.now(),
+              completed: false,
+            },
+          ],
         })),
       deleteTask: (id) =>
         set((state) => ({
